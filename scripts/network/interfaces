@@ -1,0 +1,20 @@
+# Management Network
+auto eth0
+    iface eth0 inet static
+    address 192.168.0.2
+    netmask 255.255.255.0
+    gateway 192.168.0.253
+    dns-nameservers 8.8.8.8
+
+# Data network
+auto eth1
+    iface eth1 inet static
+    address 10.10.10.1
+    netmask 255.255.255.0
+
+# Public Bridge 
+auto eth2
+    iface eth2 inet manual
+    up ifconfig $IFACE 0.0.0.0 up
+    up ip link set $IFACE promisc on
+    down ifconfig $IFACE down

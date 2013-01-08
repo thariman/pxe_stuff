@@ -1,0 +1,77 @@
+      1 # Auth
+      1 # Cinder #
+      1 # Compute 
+      1 # Compute #
+      1 # Glance #
+      1 # Imaging service
+      1 # Misc #
+      1 # MySQL Connection #
+      1 # Network settings
+      1 # Networking #
+      1 # VNC configuration
+      1 # nova-api #
+      1 # nova-scheduler #
+      1 # novnc #
+      1 allow_admin_api=true
+      1 cc_host=192.168.0.1
+      1 dhcpbridge=/usr/bin/nova-dhcpbridge
+      1 dhcpbridge_flagfile=/etc/nova/nova.conf
+      1 dmz_cidr=169.254.169.254/32
+      1 ec2_dmz_host=192.168.0.1
+      1 ec2_private_dns_show_ip=True
+      1 ec2_url=http://192.168.0.1:8773/services/Cloud
+      1 enabled_apis=metadata
+      1 force_dhcp_release=True
+      1 iscsi_helper=tgtadm
+      1 libvirt_use_virtio_for_bridges=True
+      1 lock_path=/run/lock/nova
+      1 lock_path=/var/lock/nova
+      1 metadata_listen=0.0.0.0
+      1 nova_url=http://192.168.0.1:8774/v1.1/
+      1 novnc_enable=true
+      1 quantum_admin_tenant_name=service
+      1 quantum_admin_tenant_name=services
+      1 quantum_connection_host=localhost
+      1 rabbit_port=5672
+      1 rabbit_userid=guest
+      1 rabbit_virtual_host=/
+      1 scheduler_driver=nova.scheduler.simple.SimpleScheduler
+      1 verbose=true
+      1 vnc_enabled=true
+      1 vncserver_listen=0.0.0.0
+      1 vncserver_listen=192.168.0.3
+      1 vncserver_proxyclient_address=127.0.0.1
+      1 vncserver_proxyclient_address=192.168.0.3
+      1 volume_api_class=nova.volume.cinder.API
+      1 volumes_path=/var/lib/nova/volumes
+      2    
+      2 [DEFAULT]
+      2 api_paste_config=/etc/nova/api-paste.ini
+      2 auth_strategy=keystone
+      2 compute_driver=libvirt.LibvirtDriver
+      2 connection_type=libvirt
+      2 ec2_host=192.168.0.1
+      2 firewall_driver=nova.virt.libvirt.firewall.IptablesFirewallDriver
+      2 glance_api_servers=192.168.0.1:9292
+      2 image_service=nova.image.glance.GlanceImageService
+      2 keystone_ec2_url=http://192.168.0.1:5000/v2.0/ec2tokens
+      2 libvirt_vif_driver=nova.virt.libvirt.vif.LibvirtHybridOVSBridgeDriver
+      2 linuxnet_interface_driver=nova.network.linux_net.LinuxOVSInterfaceDriver
+      2 logdir=/var/log/nova
+      2 metadata_host=192.168.0.1
+      2 network_api_class=nova.network.quantumv2.api.API
+      2 novncproxy_base_url=http://192.168.0.1:6080/vnc_auto.html
+      2 quantum_admin_auth_url=http://192.168.0.1:35357/v2.0
+      2 quantum_admin_password=password
+      2 quantum_admin_username=quantum
+      2 quantum_auth_strategy=keystone
+      2 quantum_url=http://192.168.0.1:9696
+      2 rabbit_host=192.168.0.1
+      2 rabbit_password=password
+      2 root_helper=sudo nova-rootwrap /etc/nova/rootwrap.conf
+      2 s3_host=192.168.0.1
+      2 sql_connection=mysql://nova:password@192.168.0.1/nova
+      2 state_path=/var/lib/nova
+      2 use_deprecated_auth=false
+      2 verbose=True
+     12 

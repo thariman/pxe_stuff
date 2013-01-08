@@ -1,0 +1,66 @@
+d-i debian-installer/locale string en_US
+d-i console-setup/ask_detect boolean false
+d-i console-setup/layoutcode string us
+d-i keyboard-configuration/layoutcode string us
+d-i user-setup/encrypt-home boolean false
+
+# Timezone
+d-i tzconfig/gmt boolean true
+d-i tzconfig/choose_country_zone/Etc select UTC
+d-i time/zone select Etc/UTC
+d-i clock-setup/utc boolean true
+
+d-i partman-auto/disk string /dev/sda
+d-i partman-auto/method string lvm
+d-i partman-auto/purge_lvm_from_device boolean true
+d-i partman-auto-lvm/guided_size	string max
+d-i partman-auto/choose_recipe	select	atomic
+
+d-i partman-lvm/confirm	boolean true 
+d-i partman/confirm_nooverwrite boolean true
+d-i partman-lvm/confirm_nooverwrite boolean true
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+
+# Always install the server kernel.
+d-i	base-installer/kernel/override-image	string linux-server
+d-i	pkgsel/install-language-support	boolean false
+d-i	mirror/country	string sg
+d-i     mirror/http/hostname	string	sg.archive.ubuntu.com
+d-i	mirror/http/directory	string	/ubuntu
+d-i	mirror/http/proxy	string	http://192.168.0.253:3142/
+d-i	mirror/http/mirror	select	sg.archive.ubuntu.com
+d-i	netcfg/get_hostname	string	base
+
+# Verbose output and no boot splash screen.
+d-i	debian-installer/quiet	boolean false
+d-i	debian-installer/splash	boolean false
+d-i	grub-installer/only_debian	boolean true
+d-i     grub-installer/with_other_os    boolean true
+
+d-i	pkgsel/update-policy	select	unattended-upgrades
+
+####################################################################
+# User Creation
+####################################################################
+
+# Root User
+d-i	passwd/root-login	boolean	false
+
+# Mortal User
+d-i	passwd/user-fullname            string base
+d-i	passwd/username                 string base
+d-i	passwd/user-password		password base2k12
+d-i	passwd/user-password-again	password base2k12
+d-i	user-setup/allow-password-weak	boolean true
+####################################################################
+# Software Selections
+####################################################################
+
+tasksel	tasksel/first	multiselect	openssh-server
+
+d-i	finish-install/reboot_in_progress	note
+#d-i preseed/late_command string chroot /target sh -c "/usr/bin/curl -o /tmp/postinstall http://url.com/postinstall && /bin/sh -x /tmp/postinstall" 
+d-i preseed/late_command string chroot /target sh -c "/usr/bin/wget --no-proxy http://192.168.0.253/scripts/compute/start.sh -O /tmp/postinstall && /bin/sh -x /tmp/postinstall" 
