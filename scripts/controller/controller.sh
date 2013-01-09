@@ -42,9 +42,9 @@ apt-get install -y keystone python-keystone python-keystoneclient
 wget http://192.168.0.253/scripts/controller/keystone.conf -O /etc/keystone/keystone.conf
 service keystone restart
 keystone-manage db_sync
-wget http://192.168.0.253/scripts/controller/novarc
-source novarc
-echo "source novarc">>.bashrc
+wget http://192.168.0.253/scripts/controller/openrc
+source openrc 
+echo "source openrc">>.bashrc
 wget http://192.168.0.253/scripts/controller/keystone-data.sh
 wget http://192.168.0.253/scripts/controller/keystone-endpoints.sh
 sh ./keystone-data.sh
